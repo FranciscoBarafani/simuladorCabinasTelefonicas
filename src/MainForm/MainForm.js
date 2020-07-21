@@ -734,6 +734,53 @@ export default function MainForm() {
       vectorAnterior = vectorActual;
       vectorActual.evento = proximoEvento;
     }
+    //Creacion del Vector de Fin de Simulación
+    vectorActual.evento = "Fin Simulación";
+    vectorActual.randLlegada = 0;
+    vectorActual.tEntreLlegada = 0;
+    vectorActual.proximaLlegada = 0;
+    vectorActual.proximaACabina = 0;
+    vectorActual.randDLlamada = 0;
+    vectorActual.duracionLlamada = 0;
+    vectorActual.finLlamadaCabina1 = 0;
+    vectorActual.finLlamadaCabina2 = 0;
+    vectorActual.proximoFinCobro = 0;
+    vectorActual.empleado = {
+      colaAsignacion: 0,
+      colaCobro: 0,
+      estado: 0,
+    };
+    vectorActual.cabina1 = 0;
+    vectorActual.cabina2 = 0;
+    vectorActual.cliente1 = {
+      estado: 0,
+      horaInicioLlamada: 0,
+      horaFinLlamada: 0,
+    };
+    vectorActual.cliente2 = {
+      estado: 0,
+      horaInicioLlamada: 0,
+      horaFinLlamada: 0,
+    };
+    vectorActual.cliente3 = {
+      estado: 0,
+      horaInicioLlamada: 0,
+      horaFinLlamada: 0,
+    };
+    vectorActual.cliente4 = {
+      estado: 0,
+      horaInicioLlamada: 0,
+      horaFinLlamada: 0,
+    };
+    vectorActual.cliente5 = {
+      estado: 0,
+      horaInicioLlamada: 0,
+      horaFinLlamada: 0,
+    };
+    vectorActual.duracionLlamadaFinalizada = 0;
+    vectorActual.costo = 0;
+    vectores.push(JSON.parse(JSON.stringify(vectorActual)));
+    //Seteo de Resultados
     setColaMaxCaja(vectorActual.maxColaCaja);
     setTotalDineroAcumulado(vectorActual.acIngresos);
     setGananciaNeta(vectorActual.acCajaNeta);
@@ -1252,6 +1299,18 @@ export default function MainForm() {
           </li>
           <li>Empleado(Permanente, n =1, estados: 0 Libre, 1 Ocupado)</li>
           <li>Cabina(Permanente, n = 2, estados: 0 Libre, 1 Ocupado)</li>
+        </ul>
+        <p>Colas:</p>
+        <ul>
+          <li>Cola de Asignación: Tipo FIFO</li>
+          <li>
+            Cola de Cobro: Tipo FIFO,la cola de asignación tiene prioridad sobre
+            esta.
+          </li>
+          <li>
+            Se considero para el calculo de maxima cola en caja la suma de ambas
+            colas en un instante de tiempo.
+          </li>
         </ul>
       </Modal>
     </div>
